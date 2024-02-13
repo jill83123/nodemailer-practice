@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>發送郵件</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  </head>
+
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+  </style>
+
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <h1 class="mb-3">發送郵件</h1>
+
+          <form action="/contact/post" method="post">
+            <div class="mb-3">
+              <label class="form-label" for="username">姓名</label>
+              <input class="form-control" type="text" name="username" id="username" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="description">訊息內容</label>
+              <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea>
+            </div>
+
+            <div class="mt-2 d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary">送出</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
