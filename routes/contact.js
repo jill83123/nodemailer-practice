@@ -4,9 +4,11 @@ const nodemailer = require('nodemailer');
 const router = express.Router();
 require('dotenv').config();
 
+const { doubleCsrfProtection } = require('../utils/csrfSetup');
+
 let reviewMessage = '';
 
-router.post('/post', async (req, res) => {
+router.post('/post', doubleCsrfProtection, async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
