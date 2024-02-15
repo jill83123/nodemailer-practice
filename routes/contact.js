@@ -9,6 +9,25 @@ const { doubleCsrfProtection } = require('../utils/csrfSetup');
 let reviewMessage = '';
 
 router.post('/post', doubleCsrfProtection, async (req, res) => {
+  const requiredInputs = [
+    { inputName: 'username', inputChineseName: '姓名' },
+    { inputName: 'description', inputChineseName: '訊息內容' },
+  ];
+
+  const emptyInputs = [];
+
+  requiredInputs.forEach((item) => {
+    if (!req.body[item.inputName]) {
+      emptyInputs.push(item.inputChineseName);
+    }
+  });
+
+  if (emptyInputs.length > 0) {
+    req.flash('errorMessage', `${emptyInputs.join('、')} 不得為空`);
+    res.redirect('/');
+    return;
+  }
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
